@@ -1,0 +1,14 @@
+{
+    "presets": [
+        ["env", {
+            "targets": {
+                "browsers": ["last 2 versions", "safari >= 7"]
+            },
+            "modules": "commonjs",
+            "debug": true,
+            "include": ["transform-es2015-arrow-functions"],
+            "exclude": ["transform-es2015-for-of"]
+        }]
+    ],
+    "plugins": ["transform-runtime"]
+}
