@@ -1,19 +1,23 @@
+import ReactDOM from 'react-dom'
+import React from 'react'
+import App from './App.js'
 import './index.css'
-import './test.js'
 
-console.log('222')
-class App {
-  constructor(name, age) {
-    this.name = name
-    this.age = age
+class Index extends React.PureComponent {
+  componentDidMount() {
+    console.log('this is index')
+  }
+
+  render() {
+    return (
+      <div>
+        <App />
+      </div>
+    )
   }
 }
-const a1 = new App('vince', 15)
-console.log(a1.age)
-async function test() {
-  console.log('async')
-}
-test()
+ReactDOM.render(<Index />, document.querySelector('#root'))
+
 if (module.hot) {
   // 实现热更新
   module.hot.accept()

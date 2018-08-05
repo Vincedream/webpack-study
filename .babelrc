@@ -8,7 +8,8 @@
             "debug": true,
             "include": ["transform-es2015-arrow-functions"],
             "exclude": ["transform-es2015-for-of"]
-        }]
+        }],
+        "react"
     ],
     "plugins": ["transform-runtime"]
 }

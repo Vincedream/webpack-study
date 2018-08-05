@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%= htmlWebpackPlugin.options.loading.css %>
     <title>Document</title>
 </head>
 <body>
-    <h2>this is a webpack test</h2>
-    <div class="pic"></div>
+    <div id="root">
+        <%= htmlWebpackPlugin.options.loading.html %>
+    </div>
 </body>
 </html>

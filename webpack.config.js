@@ -1,10 +1,16 @@
 const path = require('path')
+const fs = require('fs')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = (env, argv) => {
   const devMode = argv.mode === 'development'
+  // 读取写好的 loading 态的 html 和 css
+  const loading = {
+    html: fs.readFileSync(path.join(__dirname, './loading/index.html')),
+    css: `<style>${fs.readFileSync(path.join(__dirname, './loading/index.css'))}</style>`,
+  }
   return {
     entry: './src/index.js',
     output: {
@@ -15,6 +21,7 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: './src/index.html',
         filename: 'index.html',
+        loading,
       }),
       new MiniCssExtractPlugin({
         filename: 'css/[name].[hash].css',
