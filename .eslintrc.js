@@ -6,6 +6,7 @@ module.exports = {
         "no-console": ["off"],
         "react/jsx-filename-extension": ["off"],
         "import/extensions": ["off"],
-        "no-undef": ["off"]
+        "no-undef": ["off"],
+        "react/jsx-no-undef": ["off"]
     }
 };
