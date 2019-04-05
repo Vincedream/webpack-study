@@ -1,4 +1,5 @@
 import React from 'react'
+import './App.scss'
 
 class App extends React.Component {
   componentDidMount() {
@@ -7,8 +8,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        this is App
+      <div className="app">
+        <div className="title">title</div>
+        this is Appa
       </div>
     )
   }

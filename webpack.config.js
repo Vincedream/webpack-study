@@ -11,6 +11,27 @@ module.exports = (env, argv) => {
     html: fs.readFileSync(path.join(__dirname, './loading/index.html')),
     css: `<style>${fs.readFileSync(path.join(__dirname, './loading/index.css'))}</style>`,
   }
+  const postCssLoader = {
+    loader: 'postcss-loader',
+    options: {
+      ident: 'postcss',
+      plugins: () => [
+        require('postcss-px-to-viewport')({
+          unitToConvert: 'px',
+          viewportWidth: 375,
+          unitPrecision: 5,
+          propList: ['*'],
+          viewportUnit: 'vw',
+          fontViewportUnit: 'vw',
+          selectorBlackList: ['.postcss-ignore'],
+          minPixelValue: 2,
+          mediaQuery: false,
+          replace: true,
+          exclude: [],
+        }),
+      ],
+    },
+  };
   return {
     entry: './src/index.js',
     output: {
@@ -42,6 +63,21 @@ module.exports = (env, argv) => {
             devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
             'css-loader',
           ],
+        },
+        {
+          test: /\.scss/,
+          use: [
+            {
+              loader: "style-loader"
+            },
+            {
+              loader: "css-loader"
+            },
+            postCssLoader,
+            {
+              loader: "sass-loader"
+            }
+          ]
         },
         {
           test: /\.(png|jpg|gif|jpeg|svg)$/,
