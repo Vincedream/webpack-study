@@ -1,4 +1,6 @@
 import React from 'react'
+import './common/icons/call.svg'
+import SVGIcon from './common/components/svg-icon'
 import './App.scss'
 
 class App extends React.Component {
@@ -25,6 +27,10 @@ class App extends React.Component {
             <h1>2222</h1>
           </Otherwise>
         </Choose>
+
+        <div>
+          <SVGIcon name="call" />
+        </div>
       </div>
     )
   }

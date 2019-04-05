@@ -92,7 +92,17 @@ module.exports = (env, argv) => {
               },
             },
           ],
+          exclude: path.resolve(__dirname, './src/common/icons')
         },
+        {
+          test: /\.svg$/,
+          use: [{
+            loader: "svg-sprite-loader",
+            options: {
+              symbolId: 'icon-[name]'
+            }
+          }]
+        }
       ],
     },
     devServer: {
