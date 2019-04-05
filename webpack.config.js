@@ -1,8 +1,10 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = (env, argv) => {
+    const devMode = argv.mode === 'development'
     return {
         entry: './src/index.js',
         output: {
@@ -17,15 +19,15 @@ module.exports = (env, argv) => {
             new MiniCssExtractPlugin({
                 filename: "css/[name].[hash].css",
                 chunkFilename: "css/[id].[hash].css",
-            })
+            }),
+            new webpack.HotModuleReplacementPlugin(),
         ],
         module: {
             rules: [
                 {
                     test: /\.css/,
                     use: [
-                        // 'style-loader',
-                        MiniCssExtractPlugin.loader,
+                        devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
                         'css-loader'
                     ]
                 },
@@ -44,6 +46,12 @@ module.exports = (env, argv) => {
                     ]
                 }
             ]
+        },
+        devServer: {
+            compress: true,
+            port: 9000,
+            hot: true,
+            open: true
         }
     }
 }
